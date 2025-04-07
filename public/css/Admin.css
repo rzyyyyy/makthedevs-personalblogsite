@@ -1,0 +1,503 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&dispaly=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
+}
+:root {
+    --bg-color: #000000;
+    --second-bg-color: #0d0d0e;
+    --text-color: #fff;
+    --main-color: #0f88eb;
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+}
+
+body {
+    background: var(--bg-color);
+    font-family: "Poppins", sans-serif;
+    color: var(--text-color);
+}
+
+html::-webkit-scrollbar {
+    width: 0.8rem;
+}
+
+html::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+
+html::-webkit-scrollbar-thumb {
+    background: var(--main-color);
+}
+
+.blog {
+  background: var(--second-bg-color);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 5%;
+  background: rgba(0, 0, 0, 0.3);
+  filter: drop-shadow(10px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 4.5rem;
+  color: var(--main-color);
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+
+.navbar a {
+  font-size: 1.5rem;
+  color: var(--text-color);
+  margin-left: 4rem;
+  font-weight: 500;
+  transition: 0.3s ease;
+  border-bottom: 3px solid transparent;
+}
+
+.navbar a:hover,
+.navbar a.active{
+  color: var(--main-color);
+  border-bottom: 3px solid var(--main-color);
+}
+
+#menu-icon {
+  font-size: 3.6rem;
+  color: var(--main-color);
+  display: none;
+}
+
+@media (max-width: 768px) {
+  #menu-icon{
+      display: block;
+  }
+  .navbar{
+      position: absolute;
+      top: 100%;
+      right: 0;
+      width: 40%;
+      border-left: 3px solid var (--main-color);
+      border-bottom: 3px solid var (--main-color);
+      border-bottom-left-radius: 2rem;
+      padding: 1rem 3%;
+      background-color: var(--second-bg-color);
+      border-top: 0.1rem solid rgba(0, 0, 0, 0.4);
+      display: none;
+  }
+  .navbar.active{
+      display: block;
+  }
+  .navbar a{
+      display: block;
+      font-size: 2rem;
+      margin: 3rem 0;
+  }
+  .navbar a:hover,
+  .navbar a.active{
+      padding: 1rem;
+      border-radius: 0.5rem;
+      border-bottom: 0.5rem solid var(--main-color);
+  }
+}
+
+.blog h2 {
+  text-align: center;
+  font-size: 3rem;
+  color: var(--text-color);
+  margin-bottom: 2rem;
+}
+
+#blogForm {
+  background: var(--second-bg-color);
+  padding: 5rem;
+  border-radius: 30px;
+  flex-direction: column;
+  transition: 0.3s ease;
+  display: inline-block;
+  transition: 0.3s ease;
+}
+#blogForm:hover{
+  transform: scale(1.1);
+  background: transparent;
+  border: 1px solid var(--main-color);
+}
+
+#postedBlogs{
+  background: var(--second-bg-color);
+}
+
+#blogForm input,
+#blogForm textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid var(--main-color);
+  background: transparent;
+  color: var(--text-color);
+  border-radius: 5px;
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+}
+
+#blogForm input::placeholder,
+#blogForm textarea::placeholder {
+  color: var(--text-color);
+  opacity: 0.7;
+}
+
+#blogForm button {
+  padding: 1.5rem;
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-size: 1.6rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: 0.3s ease;
+  width: 150px;
+}
+
+#blogForm button:hover {
+  background-color: var(--main-color);
+}
+
+#imagePreview {
+  display: none;
+  margin-top: 1rem;
+  max-width: 150px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px var(--main-color);
+}
+
+#blogPosts {
+  margin-top: 3rem;
+}
+
+/* Style for input fields */
+.edit-input, .edit-textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  background: #1e1e1e;
+  color: white;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: 0.3s;
+}
+
+/* Ensure textarea is resizable but not too small */
+.edit-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Style for file input */
+#newImage {
+  margin-top: 10px;
+  background: #1e1e1e;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  display: block;
+}
+
+/* Style for buttons */
+.save-btn, .cancel-btn {
+  padding: 10px 15px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.3s;
+  margin-top: 10px;
+  width: 100px;
+  display: inline-block;
+  text-align: center;
+}
+
+/* Save button */
+.save-btn {
+  background-color: var(--main-color);
+  color: var(--text-color);
+  border: none;
+  transition: 0.3s ease;
+}
+
+/* Cancel button */
+.cancel-btn {
+  background-color: var(--main-color);
+  color: var(--text-color);
+  border: none;
+  transition: 0.3s ease;
+  margin-left: 10px;
+}
+
+/* On hover effect */
+.save-btn:hover {
+  transform: scale(1.1);
+  border: 1px solid var(--main-color);
+  background-color: transparent;
+}
+
+.cancel-btn:hover {
+  transform: scale(1.1);
+  border: 1px solid var(--main-color);
+  background-color: transparent;
+}
+
+/* Style for blog image */
+.blog-image {
+  max-width: 150px;
+  border-radius: 8px;
+  display: block;
+  margin: 10px 0;
+}
+
+
+.modal {
+  display: none; /* Ensures modal is hidden when page loads */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: var(--second-bg-color);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 50%;
+  position: relative;
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.blog-image {
+    max-width: 100%;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+.tooltip {
+  position: relative;
+}
+
+.tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  background: var(--main-color);
+  color: var(--text-color);
+  font-size: 8px;
+  padding: 5px;
+  border-radius: 10px;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+.tooltip:hover::after {
+  opacity: 1;
+}
+
+.footer{
+  position: relative;
+  width: 100%;
+  padding: 20px 0;
+  background-color: var(--main-color);
+}
+.footer .social{
+  text-align: center;
+  padding-bottom: 25px;
+  color: var(--bg-color);
+}
+.footer .social a{
+  font-size: 25px;
+  color: var(--bg-color);
+  border: 2px solid var(--bg-color);
+  width: 42px;
+  height: 42px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 50%;
+  margin: 0 10px;
+  transition: 0.3s ease;
+}
+.footer .social a:hover{
+  transform: scale(1.2)translateY(-5px);
+  background: var(--bg-color);
+  color: var(--main-color);
+}
+.footer ul{
+  margin-top: 0;
+  font-size: 18px;
+  line-height: 1.8;
+  text-align: center;
+}
+.footer ul li a{
+  color: var(--bg-color);
+  border-bottom: 3px solid transparent;
+  transition: 0.3s ease;
+}
+.footer ul li a:hover{
+  border-bottom: 3px solid var(--bg-color);
+}
+.footer ul li{
+  display: inline-block;
+  padding: 0 15px;
+}
+footer .copyright{
+  margin-top: 50px;
+  text-align: center;
+  font-size: 16px;
+  color: var(--bg-color);
+}.footer{
+  position: relative;
+  width: 100%;
+  padding: 20px 0;
+  background-color: var(--main-color);
+}
+.footer .social{
+  text-align: center;
+  padding-bottom: 25px;
+  color: var(--bg-color);
+}
+.footer .social a{
+  font-size: 25px;
+  color: var(--bg-color);
+  border: 2px solid var(--bg-color);
+  width: 42px;
+  height: 42px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 50%;
+  margin: 0 10px;
+  transition: 0.3s ease;
+}
+.footer .social a:hover{
+  transform: scale(1.2)translateY(-5px);
+  background: var(--bg-color);
+  color: var(--main-color);
+}
+.footer ul{
+  margin-top: 0;
+  font-size: 18px;
+  line-height: 1.8;
+  text-align: center;
+}
+.footer ul li a{
+  color: var(--bg-color);
+  border-bottom: 3px solid transparent;
+  transition: 0.3s ease;
+}
+.footer ul li a:hover{
+  border-bottom: 3px solid var(--bg-color);
+}
+.footer ul li{
+  display: inline-block;
+  padding: 0 15px;
+}
+footer .copyright{
+  margin-top: 50px;
+  text-align: center;
+  font-size: 16px;
+  color: var(--bg-color);
+}
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Message Box Styling */
+.message-box {
+  border: 1px solid var(--main-color);
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  background-color: var(--second-bg-color);
+  color: var(--text-color);
+}
+
+/* Unread Messages */
+.message-box.unread {
+  background-color: var(--main-color); /* Light blue background for unread */
+}
+.message-box.unread:hover{
+  border: 1px solid var(--main-color);
+}
+
+/* Read Messages */
+.message-box.read {
+  background-color: transparent; /* Slightly darker blue for read messages */
+  transition: 0.3s ease;
+}
+.message-box.read:hover{
+  transform: scale(1.1);
+  border: 1px solid var(--main-color);
+}
+.messages-section{
+  background: var(--second-bg-color);
+}
+
+/* Buttons */
+button {
+  margin: 5px;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  background-color: transparent;
+  border: 1px solid var(--main-color);
+  color: var(--text-color);
+  transition: 0.3s ease-in-out;
+}
+
+/* Button Hover Effect */
+button:hover {
+  opacity: 0.9;
+  background-color: var(--main-color);
+  color: var(--bg-color);
+}
+
